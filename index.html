@@ -660,7 +660,7 @@ void loop() {
 
 <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
 
-<!-- 3D Live Background Script -->
+<!-- 3D Live Background Script (with Shooting Stars) -->
 <script type="module">
     import * as THREE from 'three';
     const canvas = document.getElementById('bg-canvas');
@@ -742,11 +742,75 @@ void loop() {
     const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
     scene.add(ring2);
     
+    // ========== NEW SHOOTING STARS SYSTEM ==========
+    const shootingStarCount = 300;
+    const shootingStars = [];
+    
+    // Create shooting stars as small line segments
+    for (let i = 0; i < shootingStarCount; i++) {
+        // Random start position on screen edges
+        const startX = (Math.random() - 0.5) * 50;
+        const startY = (Math.random() - 0.5) * 30 + 5;
+        const startZ = (Math.random() - 0.5) * 40 - 20;
+        
+        // Random direction vector
+        const dirX = -0.5 + Math.random() * 0.3;
+        const dirY = -0.3 + Math.random() * 0.2;
+        const dirZ = -0.2 + Math.random() * 0.2;
+        
+        // Normalize direction
+        const len = Math.sqrt(dirX*dirX + dirY*dirY + dirZ*dirZ);
+        const normX = dirX / len;
+        const normY = dirY / len;
+        const normZ = dirZ / len;
+        
+        const speed = 0.08 + Math.random() * 0.12;
+        const length = 0.4 + Math.random() * 0.3;
+        
+        // Create a line for each shooting star
+        const material = new THREE.LineBasicMaterial({ color: 0xffaa66 });
+        const geometry = new THREE.BufferGeometry();
+        const vertices = new Float32Array([
+            startX, startY, startZ,
+            startX + normX * length, startY + normY * length, startZ + normZ * length
+        ]);
+        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        const line = new THREE.Line(geometry, material);
+        scene.add(line);
+        
+        shootingStars.push({
+            line: line,
+            posX: startX, posY: startY, posZ: startZ,
+            dirX: normX, dirY: normY, dirZ: normZ,
+            speed: speed,
+            length: length,
+            active: true,
+            life: 1.0,
+            fadeSpeed: 0.005 + Math.random() * 0.01
+        });
+    }
+    
+    // Also add small glowing particles for stars background
+    const bgStarCount = 800;
+    const bgStarGeo = new THREE.BufferGeometry();
+    const bgStarPos = new Float32Array(bgStarCount * 3);
+    for (let i = 0; i < bgStarCount; i++) {
+        bgStarPos[i*3] = (Math.random() - 0.5) * 150;
+        bgStarPos[i*3+1] = (Math.random() - 0.5) * 80;
+        bgStarPos[i*3+2] = (Math.random() - 0.5) * 80 - 40;
+    }
+    bgStarGeo.setAttribute('position', new THREE.BufferAttribute(bgStarPos, 3));
+    const bgStarMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.06, transparent: true, opacity: 0.4 });
+    const bgStars = new THREE.Points(bgStarGeo, bgStarMat);
+    scene.add(bgStars);
+    
     let time = 0;
+    
     function animate() {
         requestAnimationFrame(animate);
         time += 0.008;
         
+        // Existing animations
         particleSystem.rotation.y = time * 0.05;
         particleSystem.rotation.x = Math.sin(time * 0.1) * 0.1;
         
@@ -768,6 +832,73 @@ void loop() {
         const scale = 1 + Math.sin(time * 5) * 0.03;
         coreSphere.scale.set(scale, scale, scale);
         
+        // Rotate background stars slowly
+        bgStars.rotation.y = time * 0.01;
+        
+        // ========== UPDATE SHOOTING STARS ==========
+        shootingStars.forEach(star => {
+            if (!star.active) return;
+            
+            // Update position
+            star.posX += star.dirX * star.speed;
+            star.posY += star.dirY * star.speed;
+            star.posZ += star.dirZ * star.speed;
+            
+            // Fade out over time
+            star.life -= star.fadeSpeed;
+            
+            // Update line geometry
+            const positions = star.line.geometry.attributes.position.array;
+            positions[0] = star.posX;
+            positions[1] = star.posY;
+            positions[2] = star.posZ;
+            positions[3] = star.posX + star.dirX * star.length;
+            positions[4] = star.posY + star.dirY * star.length;
+            positions[5] = star.posZ + star.dirZ * star.length;
+            star.line.geometry.attributes.position.needsUpdate = true;
+            
+            // Update opacity based on life
+            const opacity = Math.min(0.8, star.life * 0.8);
+            star.line.material.transparent = true;
+            star.line.material.opacity = opacity;
+            
+            // Reset when faded out or out of bounds
+            if (star.life <= 0.02 || 
+                Math.abs(star.posX) > 45 || 
+                Math.abs(star.posY) > 30 || 
+                Math.abs(star.posZ) > 35) {
+                
+                // Reset position on random edge
+                star.posX = (Math.random() - 0.5) * 50;
+                star.posY = (Math.random() - 0.5) * 30 + 5;
+                star.posZ = (Math.random() - 0.5) * 40 - 20;
+                star.life = 0.7 + Math.random() * 0.3;
+                star.fadeSpeed = 0.008 + Math.random() * 0.015;
+                
+                // Random new direction
+                const newDirX = -0.6 + Math.random() * 0.4;
+                const newDirY = -0.4 + Math.random() * 0.3;
+                const newDirZ = -0.3 + Math.random() * 0.3;
+                const len = Math.sqrt(newDirX*newDirX + newDirY*newDirY + newDirZ*newDirZ);
+                star.dirX = newDirX / len;
+                star.dirY = newDirY / len;
+                star.dirZ = newDirZ / len;
+                star.speed = 0.08 + Math.random() * 0.15;
+                star.length = 0.3 + Math.random() * 0.4;
+                
+                // Reset line vertices immediately
+                const newPositions = star.line.geometry.attributes.position.array;
+                newPositions[0] = star.posX;
+                newPositions[1] = star.posY;
+                newPositions[2] = star.posZ;
+                newPositions[3] = star.posX + star.dirX * star.length;
+                newPositions[4] = star.posY + star.dirY * star.length;
+                newPositions[5] = star.posZ + star.dirZ * star.length;
+                star.line.geometry.attributes.position.needsUpdate = true;
+                star.line.material.opacity = 0.7;
+            }
+        });
+        
         camera.position.x += (0 - camera.position.x) * 0.02;
         camera.lookAt(0, 0, 0);
         
@@ -783,7 +914,7 @@ void loop() {
 </script>
 
 <script>
-    // ========== NEW EMAILJS CONFIGURATION ==========
+    // ========== EMAILJS CONFIGURATION ==========
     const EMAILJS_PUBLIC_KEY = "VVrl-moux64oHkuAQ";
     const EMAILJS_SERVICE_ID = "service_37tgwy4";
     const EMAILJS_TEMPLATE_ID = "template_m9i4xmx";
