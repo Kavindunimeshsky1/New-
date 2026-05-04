@@ -70,7 +70,6 @@
             visibility: hidden;
         }
         .loading-logo {
-            font-size: 4rem;
             margin-bottom: 1rem;
             animation: loadingPulse 1.5s ease-in-out infinite;
         }
@@ -146,6 +145,1044 @@
             animation: logoGlow 2s ease-in-out infinite;
         }
         @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(37,99,235,0); }
+        }
+        
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        
+        #bg-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -2; 
+            object-fit: cover;
+        }
+        
+        /* Login Modal */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(15px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .login-card {
+            background: rgba(10,20,35,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 420px;
+            border: 1px solid rgba(59,130,246,0.5);
+            text-align: center;
+            animation: fadeInUp 0.5s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .login-card input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 2rem;
+            border: 1px solid var(--primary);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        .login-card input:focus { outline: none; border-color: var(--primary-light); }
+        .login-card button {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 2rem;
+            border: none;
+            background: linear-gradient(95deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .login-card button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px var(--primary); }
+        .login-card .secondary-btn { background: transparent; border: 1px solid var(--primary); }
+        .login-message { margin-top: 1rem; font-size: 0.85rem; color: #86efac; }
+        .otp-group { display: none; margin-top: 0.5rem; }
+        .otp-group.show { display: block; }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 1.5rem;
+            background: rgba(10,20,35,0.55);
+            backdrop-filter: blur(16px);
+            border-radius: 60px;
+            border: 1px solid rgba(59,130,246,0.4);
+            z-index: 10;
+            position: relative;
+        }
+        .logo-area { display: flex; align-items: center; gap: 0.8rem; }
+        .logo-icon-img { 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 18px; 
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .logo-text h1 { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo-text p { font-size: 0.65rem; color: #94a3b8; letter-spacing: 1px; }
+        
+        .nav-controls { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(59,130,246,0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+        }
+        .user-info button { background: none; border: none; color: var(--primary); cursor: pointer; }
+        .nav-btn, .lang-select {
+            background: rgba(0,0,0,0.5);
+            padding: 0.4rem 0.9rem;
+            border-radius: 40px;
+            border: 1px solid var(--primary);
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.85rem;
+        }
+        .nav-btn:hover, .lang-select:hover { background: var(--primary); }
+        
+        /* Hero Section */
+        .hero {
+            max-width: 1300px;
+            margin: 1rem auto;
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            z-index: 5;
+            position: relative;
+        }
+        .hero-left { flex: 1.2; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(139,92,246,0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        .hero-left h1 { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+        .highlight { background: linear-gradient(120deg, var(--primary), var(--secondary)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .hero-left p { font-size: 1rem; color: #94a3b8; margin-bottom: 1.5rem; line-height: 1.6; }
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            background: linear-gradient(95deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px var(--primary); }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary-light);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--primary); }
+        .stat-label { font-size: 0.75rem; color: #94a3b8; }
+        
+        .hero-right {
+            flex: 0.8;
+            background: rgba(15,30,60,0.4);
+            backdrop-filter: blur(14px);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+        
+        .section-container { max-width: 1300px; margin: 2rem auto; padding: 1rem 2rem; }
+        .section-title { font-size: 1.8rem; text-align: center; margin-bottom: 0.5rem; font-weight: 700; }
+        
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .info-card {
+            background: rgba(20,30,55,0.6);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(59,130,246,0.3);
+            transition: 0.3s;
+        }
+        .info-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .info-card h3 { margin-bottom: 1rem; color: var(--primary-light); display: flex; align-items: center; gap: 0.5rem; }
+        
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(15,23,42,0.7);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .tech-table th, .tech-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(59,130,246,0.2);
+        }
+        .tech-table th { background: rgba(37,99,235,0.3); color: var(--primary-light); font-weight: 600; }
+        
+        .architecture-diagram {
+            background: rgba(10,20,35,0.6);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+        }
+        
+        .cards-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 1.5rem; }
+        .feature-card {
+            background: rgba(20,30,55,0.6);
+            backdrop-filter: blur(12px);
+            padding: 1rem;
+            border-radius: 1.2rem;
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .feature-icon { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; display: block; }
+        .feature-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .feature-card p { font-size: 0.75rem; color: #94a3b8; }
+        
+        .accordion-content { display: none; margin-top: 1rem; margin-bottom: 1.5rem; animation: fadeInUp 0.4s ease; }
+        .accordion-content.active { display: block; }
+        .info-box {
+            background: rgba(10,20,35,0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        pre {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 1rem;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.8rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .gallery-item {
+            background: rgba(20,30,55,0.6);
+            border-radius: 1rem;
+            padding: 0.8rem;
+            text-align: center;
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+        .gallery-item img {
+            width: 100%;
+            border-radius: 0.8rem;
+            background: #1e293b;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(56,189,248,0.08));
+            border-radius: 2rem;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 1100px;
+        }
+        
+        footer {
+            background: rgba(10,20,35,0.8);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(59,130,246,0.2);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 100;
+        }
+        .back-to-top.show { opacity: 1; }
+        
+        @media (max-width: 900px) {
+            .navbar { margin: 0.5rem 1rem; flex-direction: column; }
+            .hero-left h1 { font-size: 2rem; }
+            .section-container { padding: 0 1rem; }
+            .logo-icon-img { width: 35px; height: 35px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== LOADING SCREEN ========== -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="loading-logo">
+        <img src="https://i.ibb.co/4g8vR0pp/image" alt="VisionGuard App Icon" style="width: 80px; height: 80px; border-radius: 20px;">
+    </div>
+    <div class="loading-text">VisionGuard</div>
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+</div>
+
+<!-- ========== TOAST NOTIFICATION CONTAINER ========== -->
+<div id="toastContainer"></div>
+
+<!-- Login Modal -->
+<div id="loginOverlay" class="login-overlay">
+    <div class="login-card">
+        <img src="https://i.ibb.co/4g8vR0pp/image" alt="VisionGuard" style="width: 60px; height: 60px; border-radius: 18px; margin-bottom: 1rem;">
+        <h2 data-i18n="login_title">VisionGuard</h2>
+        <p data-i18n="login_sub" style="color: #94a3b8; font-size: 0.8rem;">Secure Access</p>
+        <div id="stepEmail">
+            <input type="email" id="loginEmail" placeholder="Email address" data-i18n-placeholder="login_email_placeholder">
+            <button id="sendOtpBtn"><i class="fas fa-paper-plane"></i> <span data-i18n="send_otp_btn">Send OTP</span></button>
+        </div>
+        <div id="stepOtp" class="otp-group">
+            <input type="text" id="otpCode" placeholder="Enter OTP" data-i18n-placeholder="otp_placeholder">
+            <button id="verifyOtpBtn"><i class="fas fa-check-circle"></i> <span data-i18n="verify_btn">Verify & Login</span></button>
+            <button id="resendOtpBtn" class="secondary-btn"><span data-i18n="resend_btn">Resend OTP</span></button>
+        </div>
+        <div id="loginMessage" class="login-message"></div>
+    </div>
+</div>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo-area">
+        <img src="https://i.ibb.co/4g8vR0pp/image" alt="VisionGuard App Icon" class="logo-icon-img animated-logo">
+        <div class="logo-text">
+            <h1>VisionGuard</h1>
+            <p data-i18n="tagline">PROFESSIONAL SECURITY</p>
+        </div>
+    </div>
+    <div class="nav-controls">
+        <div id="userInfo" class="user-info" style="display: none;">
+            <i class="fas fa-user"></i>
+            <span id="userEmail"></span>
+            <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span data-i18n="logout">Logout</span></button>
+        </div>
+        <select id="languageSwitcher" class="lang-select">
+            <option value="en">🇬🇧 English</option>
+            <option value="si">🇱🇰 සිංහල</option>
+            <option value="ta">🇱🇰 தமிழ்</option>
+        </select>
+        <button id="themeToggle" class="nav-btn"><i class="fas fa-moon"></i></button>
+        <button class="nav-btn" id="printPdfBtn"><i class="fas fa-print"></i> <span data-i18n="report_btn">Report</span></button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-left">
+        <div class="hero-badge" data-i18n="badge">
+            <i class="fas fa-shield-alt"></i> Advanced Protection
+        </div>
+        <h1 id="heroTitle">VisionGuard: <span class="highlight">Smart TV Protection</span> & Complete Home Automation</h1>
+        <p data-i18n="hero_desc">An AI-powered IoT security system that combines Smart TV threat detection, universal IR remote control, and Arduino-based sensor automation for total peace of mind.</p>
+        <div class="btn-group">
+            <button class="btn-primary"><i class="fas fa-download"></i> <span data-i18n="download_app">Download App</span></button>
+            <button class="btn-outline"><i class="fas fa-play-circle"></i> <span data-i18n="watch_demo">Watch Demo</span></button>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item"><div class="stat-number">10K+</div><div class="stat-label" data-i18n="stat_users">Active Users</div></div>
+            <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label" data-i18n="stat_devices">Devices Protected</div></div>
+            <div class="stat-item"><div class="stat-number">99.9%</div><div class="stat-label" data-i18n="stat_uptime">Uptime</div></div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div><i class="fas fa-shield-halos" style="font-size: 4rem; color: var(--primary);"></i></div>
+        <p style="margin-top: 0.5rem;"><span data-i18n="system_status">System Status</span>: <strong style="color:#22c55e;" data-i18n="online">Active</strong></p>
+        <small data-i18n="realtime">Real-time Protection Enabled</small>
+    </div>
+</section>
+
+<!-- Problem & Solution -->
+<div class="section-container">
+    <h2 class="section-title" data-i18n="problem_title">The Challenge</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h3><i class="fas fa-exclamation-triangle"></i> <span data-i18n="problem_head">Problem</span></h3>
+            <p data-i18n="problem_text">Traditional home security systems are expensive, fragmented, and lack integration with Smart TVs. Users juggle multiple remotes and have no unified security solution.</p>
+        </div>
+        <div class="info-card">
+            <h3><i class="fas fa-lightbulb"></i> <span data-i18n="solution_head">Our Solution</span></h3>
+            <p data-i18n="solution_text">VisionGuard unifies Smart TV protection, universal IR control, and Arduino-based environmental sensing into a single, affordable, easy-to-use system.</p>
+        </div>
+        <div class="info-card">
+            <h3><i class="fas fa-bullseye"></i> <span data-i18n="objectives_head">Key Objectives</span></h3>
+            <ul>
+                <li data-i18n="obj1">Real-time Smart TV threat detection</li>
+                <li data-i18n="obj2">Universal IR remote for all appliances</li>
+                <li data-i18n="obj3">Arduino sensor network for home security</li>
+                <li data-i18n="obj4">OTP-based secure authentication</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Technologies -->
+<div class="section-container">
+    <h2 class="section-title" data-i18n="tech_title">Technologies Used</h2>
+    <table class="tech-table">
+        <thead><tr><th data-i18n="tech_cat">Category</th><th data-i18n="tech_name">Technology</th><th data-i18n="tech_ver">Version</th></tr></thead>
+        <tbody>
+            <tr><td data-i18n="tech_cat1">Frontend</td><td>HTML5, CSS3, JavaScript</td><td>ES6+</td></tr>
+            <tr><td data-i18n="tech_cat2">3D Graphics</td><td>Three.js</td><td>r128</td></tr>
+            <tr><td data-i18n="tech_cat3">Authentication</td><td>EmailJS + OTP</td><td>v4</td></tr>
+            <tr><td data-i18n="tech_cat4">Hardware</td><td>ESP32, Arduino Uno</td><td>-</td></tr>
+            <tr><td data-i18n="tech_cat5">IR Communication</td><td>IRremote Library</td><td>v4.0</td></tr>
+            <tr><td data-i18n="tech_cat6">Sensors</td><td>DHT11, PIR HC-SR501, MQ-135</td><td>-</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- System Architecture -->
+<div class="section-container">
+    <h2 class="section-title" data-i18n="arch_title">System Architecture</h2>
+    <div class="architecture-diagram">
+        <pre style="background: transparent; color: #86efac;">
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         VISIONGUARD SYSTEM ARCHITECTURE                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐      ┌──────────────┐      ┌──────────────────────────┐  │
+│  │  Mobile App  │      │   Firebase   │      │     EmailJS Service      │  │
+│  │  (Frontend)  │◄────►│    (Cloud)   │◄────►│     (OTP Auth)           │  │
+│  └──────┬───────┘      └──────────────┘      └──────────────────────────┘  │
+│         │ WiFi/Bluetooth                                                    │
+│         ▼                                                                   │
+│  ┌──────────────┐      ┌──────────────┐      ┌──────────────────────────┐  │
+│  │  ESP32/Ardu  │──────│  IR LED/Rx   │──────│  TV / AC / Fan / Devices │  │
+│  └──────┬───────┘      └──────────────┘      └──────────────────────────┘  │
+│         │ Sensors                                                           │
+│         ▼                                                                   │
+│  ┌──────────────┐      ┌──────────────┐                                    │
+│  │  DHT11 Temp  │      │  PIR Motion  │                                    │
+│  └──────────────┘      └──────────────┘                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+        </pre>
+    </div>
+</div>
+
+<!-- IR System Section -->
+<div class="section-container">
+    <h2 class="section-title" data-i18n="ir_title">Universal IR Remote System</h2>
+    <div class="cards-grid">
+        <div class="feature-card" onclick="toggleAccordion('ir-capture')"><i class="fas fa-code feature-icon"></i><h3 data-i18n="ir_cap_title">Capture Codes</h3><p data-i18n="ir_cap_desc">Learn any IR remote</p></div>
+        <div class="feature-card" onclick="toggleAccordion('ir-send')"><i class="fas fa-paper-plane feature-icon"></i><h3 data-i18n="ir_send_title">Send Signals</h3><p data-i18n="ir_send_desc">Control devices instantly</p></div>
+        <div class="feature-card" onclick="toggleAccordion('ir-circuit')"><i class="fas fa-microchip feature-icon"></i><h3 data-i18n="ir_circuit_title">Circuit Diagram</h3><p data-i18n="ir_circuit_desc">Hardware setup</p></div>
+    </div>
+    <div id="ir-capture" class="accordion-content"><div class="info-box"><h3 data-i18n="ir_cap_head">📥 IR Code Capture - Arduino Code</h3><pre><code id="code1">#include &lt;IRremote.h&gt;
+int recvPin = 15;
+IRrecv irrecv(recvPin);
+decode_results results;
+void setup() { Serial.begin(9600); irrecv.enableIRIn(); }
+void loop() { if (irrecv.decode(&results)) { Serial.println(results.value, HEX); irrecv.resume(); } }</code><button class="copy-btn" onclick="copyCode('code1')">Copy</button></pre><p data-i18n="ir_cap_sample"><strong>Sample Codes:</strong> Power: 0xFFA25D, Vol+: 0xFF629D</p></div></div>
+    <div id="ir-send" class="accordion-content"><div class="info-box"><h3 data-i18n="ir_send_head">📤 IR Signal Send - Arduino Code</h3><pre><code id="code2">#include &lt;IRremote.h&gt;
+IRsend irsend;
+void loop() { irsend.sendNEC(0xFFA25D, 32); delay(5000); }</code><button class="copy-btn" onclick="copyCode('code2')">Copy</button></pre></div></div>
+    <div id="ir-circuit" class="accordion-content"><div class="info-box"><h3 data-i18n="ir_circuit_head">🔌 IR Circuit Diagram</h3><pre>IR LED → 220Ω Resistor → Pin D4 (ESP32)
+IR Receiver VS1838B → VCC:5V, GND:GND, OUT:Pin D15</pre></div></div>
+</div>
+
+<!-- Arduino System -->
+<div class="section-container">
+    <h2 class="section-title" data-i18n="arduino_title">Arduino Security & Automation</h2>
+    <div class="cards-grid">
+        <div class="feature-card" onclick="toggleAccordion('ard-sensors')"><i class="fas fa-microchip feature-icon"></i><h3 data-i18n="ard_sensor_title">Sensor Integration</h3><p data-i18n="ard_sensor_desc">DHT11, PIR, MQ-135</p></div>
+        <div class="feature-card" onclick="toggleAccordion('ard-control')"><i class="fas fa-toggle-on feature-icon"></i><h3 data-i18n="ard_control_title">Device Control</h3><p data-i18n="ard_control_desc">Relay module</p></div>
+        <div class="feature-card" onclick="toggleAccordion('ard-alert')"><i class="fas fa-bell feature-icon"></i><h3 data-i18n="ard_alert_title">Alert System</h3><p data-i18n="ard_alert_desc">Real-time notifications</p></div>
+    </div>
+    <div id="ard-sensors" class="accordion-content"><div class="info-box"><h3 data-i18n="ard_sensor_head">📊 Sensor Data Reading</h3><pre><code id="code3">#include &lt;DHT.h&gt;
+DHT dht(4, DHT11);
+int pirPin = 14;
+void loop() {
+  float temp = dht.readTemperature();
+  int motion = digitalRead(pirPin);
+  Serial.print(temp); Serial.print("°C | Motion: "); Serial.println(motion);
+  delay(2000);
+}</code><button class="copy-btn" onclick="copyCode('code3')">Copy</button></pre></div></div>
+    <div id="ard-control" class="accordion-content"><div class="info-box"><h3 data-i18n="ard_control_head">⚡ Device Control via Relay</h3><pre><code id="code4">int relayPin = 5;
+void setup() { pinMode(relayPin, OUTPUT); }
+void loop() {
+  if(Serial.available()) {
+    char cmd = Serial.read();
+    digitalWrite(relayPin, cmd=='1'?HIGH:LOW);
+  }
+}</code><button class="copy-btn" onclick="copyCode('code4')">Copy</button></pre></div></div>
+    <div id="ard-alert" class="accordion-content"><div class="info-box"><h3 data-i18n="ard_alert_head">🚨 Smart Alert Logic</h3><pre><code>if(motion || temp > 40 || gas > threshold) {
+  digitalWrite(buzzer, HIGH);
+  sendPushNotification("Security Alert!");
+}</code></pre></div></div>
+</div>
+
+<!-- Gallery -->
+<div class="section-container">
+    <h2 class="section-title" data-i18n="gallery_title">System Preview</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://i.ibb.co/C5LgrfgH/Screenshot-20260503-153043.png" alt="Login" onerror="this.src='https://placehold.co/300x180/1e293b/3b82f6?text=Login'"><p data-i18n="gallery_cap1">🔐 Secure OTP Login</p></div>
+        <div class="gallery-item"><img src="https://i.ibb.co/zTp212pS/Screenshot-20260503-153026.png" alt="IR Remote" onerror="this.src='https://placehold.co/300x180/1e293b/38bdf8?text=IR'"><p data-i18n="gallery_cap2">🎮 Universal IR Remote</p></div>
+        <div class="gallery-item"><img src="https://i.ibb.co/PGr8kVJk/Screenshot-20260503-153017.png" alt="Sensors" onerror="this.src='https://placehold.co/300x180/1e293b/22c55e?text=Sensors'"><p data-i18n="gallery_cap3">📊 Real-time Sensor Data</p></div>
+        <div class="gallery-item"><img src="https://placehold.co/300x180/1e293b/8b5cf6?text=ESP32" alt="Hardware"><p data-i18n="gallery_cap4">🔧 ESP32 + IR + Sensors</p></div>
+    </div>
+</div>
+
+<!-- Results & Future -->
+<div class="section-container">
+    <h2 class="section-title" data-i18n="results_title">Achievements & Roadmap</h2>
+    <div class="info-grid">
+        <div class="info-card">
+            <h3><i class="fas fa-check-circle"></i> <span data-i18n="achieve_title">What We Achieved</span></h3>
+            <ul>
+                <li data-i18n="ach1">✅ AI-based Smart TV threat detection</li>
+                <li data-i18n="ach2">✅ Universal IR remote (15+ brands)</li>
+                <li data-i18n="ach3">✅ Real-time sensor monitoring + mobile alerts</li>
+                <li data-i18n="ach4">✅ OTP secure authentication</li>
+                <li data-i18n="ach5">✅ Cost-effective (< LKR 15,000 hardware)</li>
+            </ul>
+        </div>
+        <div class="info-card">
+            <h3><i class="fas fa-rocket"></i> <span data-i18n="future_title">Future Enhancements</span></h3>
+            <ul>
+                <li data-i18n="fut1">🚀 AI face recognition</li>
+                <li data-i18n="fut2">🚀 Voice control (Google/Alexa)</li>
+                <li data-i18n="fut3">🚀 Cloud historical data</li>
+                <li data-i18n="fut4">🚀 Energy monitoring module</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="cta-section">
+    <h2 data-i18n="cta_title">Ready to Secure Your Home?</h2>
+    <p data-i18n="cta_desc">Join thousands of users trusting VisionGuard for complete home protection.</p>
+    <button class="btn-primary"><i class="fas fa-download"></i> <span data-i18n="cta_btn">Get Started Now</span></button>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>Developed By @ K.N.Vanel Fernando 🔰 St' Xavires College Marawila 🔰</p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">
+        <i class="fas fa-envelope"></i> kavindusky07@gmail.com | 
+        <i class="fas fa-phone-alt"></i> +94 76 320 4765 | 
+        <i class="fab fa-github"></i> Kavindunimeshsky1
+    </p>
+    <p data-i18n="footer_rights" style="margin-top: 0.5rem; font-size: 0.7rem;">© 2026 VisionGuard — All rights reserved.</p>
+</footer>
+
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<!-- 3D Live Background & Shooting Stars Script -->
+<script type="module">
+    import * as THREE from 'three';
+    const canvas = document.getElementById('bg-canvas');
+    const scene = new THREE.Scene();
+    scene.background = null;
+    scene.fog = new THREE.FogExp2(0x050b1a, 0.002);
+    
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 2, 12);
+    
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x000000, 0);
+    
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0x111122);
+    scene.add(ambientLight);
+    const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    mainLight.position.set(1, 2, 3);
+    scene.add(mainLight);
+    
+    // Central Glowing Sphere
+    const glowGeometry = new THREE.SphereGeometry(0.8, 32, 32);
+    const glowMaterial = new THREE.MeshStandardMaterial({ color: 0x3b82f6, emissive: 0x1e3a8a, emissiveIntensity: 1.2 });
+    const coreSphere = new THREE.Mesh(glowGeometry, glowMaterial);
+    scene.add(coreSphere);
+    
+    // Particle Galaxy
+    const particleCount = 4000;
+    const particlesGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+        const radius = 4 + Math.random() * 5;
+        const angle = Math.random() * Math.PI * 2;
+        const spiralFactor = angle * 0.8;
+        const x = Math.cos(angle + spiralFactor) * radius;
+        const z = Math.sin(angle + spiralFactor) * radius;
+        const y = Math.sin(angle * 3) * 1.2 * (Math.random() - 0.5);
+        positions[i*3] = x;
+        positions[i*3+1] = y;
+        positions[i*3+2] = z;
+        const color = new THREE.Color().setHSL(0.55 + Math.random()*0.1, 0.8, 0.5);
+        colors[i*3] = color.r;
+        colors[i*3+1] = color.g;
+        colors[i*3+2] = color.b;
+    }
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    const particleMaterial = new THREE.PointsMaterial({ size: 0.08, vertexColors: true, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+    const particleSystem = new THREE.Points(particlesGeometry, particleMaterial);
+    scene.add(particleSystem);
+    
+    // Floating Orbs
+    const orbs = [];
+    for (let i = 0; i < 30; i++) {
+        const orbMat = new THREE.MeshStandardMaterial({ color: 0x3b82f6, emissive: 0x1e3a8a, emissiveIntensity: 0.6 });
+        const orb = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), orbMat);
+        const radius = 2.5 + Math.random() * 3;
+        const angle = Math.random() * Math.PI * 2;
+        const height = (Math.random() - 0.5) * 2.5;
+        orb.userData = { radius, angle, speed: 0.005 + Math.random() * 0.01, height, ySpeed: 0.002 + Math.random() * 0.005 };
+        orb.position.x = Math.cos(angle) * radius;
+        orb.position.z = Math.sin(angle) * radius;
+        orb.position.y = height;
+        scene.add(orb);
+        orbs.push(orb);
+    }
+    
+    // Rotating Rings
+    const ringGeo = new THREE.TorusGeometry(1.6, 0.04, 128, 400);
+    const ringMat = new THREE.MeshStandardMaterial({ color: 0x3b82f6, emissive: 0x2563eb, emissiveIntensity: 0.8 });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    scene.add(ring);
+    
+    const ring2Geo = new THREE.TorusGeometry(2.2, 0.03, 128, 400);
+    const ring2Mat = new THREE.MeshStandardMaterial({ color: 0x60a5fa, emissive: 0x1e40af, emissiveIntensity: 0.5 });
+    const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+    scene.add(ring2);
+    
+    // Shooting Stars
+    const shootingStarCount = 300;
+    const shootingStars = [];
+    for (let i = 0; i < shootingStarCount; i++) {
+        const startX = (Math.random() - 0.5) * 50;
+        const startY = (Math.random() - 0.5) * 30 + 5;
+        const startZ = (Math.random() - 0.5) * 40 - 20;
+        const dirX = -0.5 + Math.random() * 0.3;
+        const dirY = -0.3 + Math.random() * 0.2;
+        const dirZ = -0.2 + Math.random() * 0.2;
+        const len = Math.sqrt(dirX*dirX + dirY*dirY + dirZ*dirZ);
+        const normX = dirX / len;
+        const normY = dirY / len;
+        const normZ = dirZ / len;
+        const speed = 0.08 + Math.random() * 0.12;
+        const length = 0.4 + Math.random() * 0.3;
+        const material = new THREE.LineBasicMaterial({ color: 0xffaa66 });
+        const geometry = new THREE.BufferGeometry();
+        const vertices = new Float32Array([
+            startX, startY, startZ,
+            startX + normX * length, startY + normY * length, startZ + normZ * length
+        ]);
+        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        const line = new THREE.Line(geometry, material);
+        scene.add(line);
+        shootingStars.push({
+            line: line,
+            posX: startX, posY: startY, posZ: startZ,
+            dirX: normX, dirY: normY, dirZ: normZ,
+            speed: speed,
+            length: length,
+            life: 1.0,
+            fadeSpeed: 0.005 + Math.random() * 0.01
+        });
+    }
+    
+    let time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.008;
+        
+        particleSystem.rotation.y = time * 0.05;
+        particleSystem.rotation.x = Math.sin(time * 0.1) * 0.1;
+        ring.rotation.x = Math.sin(time * 0.4) * 0.2;
+        ring.rotation.y = time * 0.3;
+        ring2.rotation.x = Math.sin(time * 0.5) * 0.15;
+        ring2.rotation.y = time * 0.25;
+        
+        orbs.forEach(orb => {
+            orb.userData.angle += orb.userData.speed;
+            orb.userData.height += orb.userData.ySpeed;
+            if (orb.userData.height > 1.8) orb.userData.ySpeed = -Math.abs(orb.userData.ySpeed);
+            if (orb.userData.height < -1.8) orb.userData.ySpeed = Math.abs(orb.userData.ySpeed);
+            orb.position.x = Math.cos(orb.userData.angle) * orb.userData.radius;
+            orb.position.z = Math.sin(orb.userData.angle) * orb.userData.radius;
+            orb.position.y = orb.userData.height;
+        });
+        
+        const scale = 1 + Math.sin(time * 5) * 0.03;
+        coreSphere.scale.set(scale, scale, scale);
+        
+        shootingStars.forEach(star => {
+            star.posX += star.dirX * star.speed;
+            star.posY += star.dirY * star.speed;
+            star.posZ += star.dirZ * star.speed;
+            star.life -= star.fadeSpeed;
+            const positions = star.line.geometry.attributes.position.array;
+            positions[0] = star.posX;
+            positions[1] = star.posY;
+            positions[2] = star.posZ;
+            positions[3] = star.posX + star.dirX * star.length;
+            positions[4] = star.posY + star.dirY * star.length;
+            positions[5] = star.posZ + star.dirZ * star.length;
+            star.line.geometry.attributes.position.needsUpdate = true;
+            star.line.material.opacity = Math.min(0.8, star.life * 0.8);
+            star.line.material.transparent = true;
+            if (star.life <= 0.02 || Math.abs(star.posX) > 45 || Math.abs(star.posY) > 30 || Math.abs(star.posZ) > 35) {
+                star.posX = (Math.random() - 0.5) * 50;
+                star.posY = (Math.random() - 0.5) * 30 + 5;
+                star.posZ = (Math.random() - 0.5) * 40 - 20;
+                star.life = 0.7 + Math.random() * 0.3;
+                const newDirX = -0.6 + Math.random() * 0.4;
+                const newDirY = -0.4 + Math.random() * 0.3;
+                const newDirZ = -0.3 + Math.random() * 0.3;
+                const len = Math.sqrt(newDirX*newDirX + newDirY*newDirY + newDirZ*newDirZ);
+                star.dirX = newDirX / len;
+                star.dirY = newDirY / len;
+                star.dirZ = newDirZ / len;
+                star.speed = 0.08 + Math.random() * 0.15;
+                star.length = 0.3 + Math.random() * 0.4;
+                const newPositions = star.line.geometry.attributes.position.array;
+                newPositions[0] = star.posX;
+                newPositions[1] = star.posY;
+                newPositions[2] = star.posZ;
+                newPositions[3] = star.posX + star.dirX * star.length;
+                newPositions[4] = star.posY + star.dirY * star.length;
+                newPositions[5] = star.posZ + star.dirZ * star.length;
+                star.line.geometry.attributes.position.needsUpdate = true;
+            }
+        });
+        
+        camera.position.x += (0 - camera.position.x) * 0.02;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+    }
+    animate();
+    
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+
+<script>
+    // ========== LOADING SCREEN ==========
+    let progress = 0;
+    const progressBar = document.getElementById('progressBar');
+    const loadingScreen = document.getElementById('loadingScreen');
+    const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            setTimeout(() => {
+                loadingScreen.classList.add('hide');
+            }, 500);
+        }
+        progressBar.style.width = progress + '%';
+    }, 200);
+    
+    // ========== TOAST NOTIFICATION FUNCTION ==========
+    function showToast(message, type = 'info') {
+        const toastContainer = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+        toast.innerHTML = `<span style="font-size:1.2rem;">${icon}</span><span>${message}</span>`;
+        toastContainer.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 10);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+    
+    // ========== TYPEWRITER EFFECT ==========
+    const heroTitle = document.getElementById('heroTitle');
+    const originalText = heroTitle.innerText;
+    heroTitle.innerText = '';
+    let i = 0;
+    function typeWriter() {
+        if (i < originalText.length) {
+            heroTitle.innerHTML += originalText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        } else {
+            heroTitle.style.borderRight = 'none';
+        }
+    }
+    setTimeout(typeWriter, 500);
+    
+    // ========== CONFETTI ON LOGIN ==========
+    function triggerConfetti() {
+        canvasConfetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#2563eb', '#60a5fa', '#8b5cf6'] });
+        canvasConfetti({ particleCount: 100, spread: 100, origin: { y: 0.7, x: 0.2 }, startVelocity: 15 });
+        canvasConfetti({ particleCount: 100, spread: 100, origin: { y: 0.7, x: 0.8 }, startVelocity: 15 });
+    }
+    
+    // ========== PDF DOWNLOAD ==========
+    document.getElementById('printPdfBtn').onclick = () => {
+        window.print();
+        showToast('📄 Project report download started!', 'success');
+    };
+    
+    // ========== EMAILJS CONFIGURATION ==========
+    const EMAILJS_PUBLIC_KEY = "VVrl-moux64oHkuAQ";
+    const EMAILJS_SERVICE_ID = "service_37tgwy4";
+    const EMAILJS_TEMPLATE_ID = "template_m9i4xmx";
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+    
+    let generatedOtp = null;
+    let otpEmail = null;
+    let otpExpiry = null;
+    
+    let loggedInUser = localStorage.getItem('visionguard_user');
+    if(loggedInUser) {
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('userInfo').style.display = 'flex';
+        document.getElementById('userEmail').innerText = loggedInUser;
+    }
+    
+    async function sendOTPEmail(email, otp) {
+        try {
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, { to_email: email, otp: otp, email: email });
+            return true;
+        } catch(e) { return false; }
+    }
+    
+    document.getElementById('sendOtpBtn').onclick = async () => {
+        const email = document.getElementById('loginEmail').value;
+        if(!email || !email.includes('@')) { showToast('Please enter valid email', 'error'); return; }
+        showToast('📧 Sending OTP...', 'info');
+        const otp = Math.floor(100000 + Math.random()*900000).toString();
+        generatedOtp = otp; otpEmail = email; otpExpiry = Date.now() + 5*60*1000;
+        const sent = await sendOTPEmail(email, otp);
+        if(sent) showToast(`✅ OTP sent to ${email}`, 'success');
+        else showToast(`⚠️ Demo OTP: ${otp}`, 'info');
+        document.getElementById('stepEmail').style.display = 'none';
+        document.getElementById('stepOtp').classList.add('show');
+    };
+    
+    document.getElementById('verifyOtpBtn').onclick = () => {
+        const enteredOtp = document.getElementById('otpCode').value;
+        if(!generatedOtp) { showToast('Please request OTP first', 'error'); return; }
+        if(Date.now() > otpExpiry) { showToast('OTP expired. Request new one', 'error'); return; }
+        if(enteredOtp === generatedOtp) {
+            localStorage.setItem('visionguard_user', otpEmail);
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('userEmail').innerText = otpEmail;
+            document.getElementById('stepEmail').style.display = 'block';
+            document.getElementById('stepOtp').classList.remove('show');
+            showToast('🎉 Login successful! Welcome to VisionGuard', 'success');
+            triggerConfetti();
+        } else showToast('Invalid OTP', 'error');
+    };
+    
+    document.getElementById('resendOtpBtn').onclick = async () => {
+        if(!otpEmail) { showToast('Email not found', 'error'); return; }
+        const newOtp = Math.floor(100000 + Math.random()*900000).toString();
+        generatedOtp = newOtp; otpExpiry = Date.now() + 5*60*1000;
+        const sent = await sendOTPEmail(otpEmail, newOtp);
+        if(sent) showToast(`✅ New OTP sent to ${otpEmail}`, 'success');
+        else showToast(`⚠️ Demo OTP: ${newOtp}`, 'info');
+    };
+    
+    document.getElementById('logoutBtn').onclick = () => {
+        localStorage.removeItem('visionguard_user');
+        location.reload();
+    };
+    
+    // Translations
+    const translations = {
+        en: {
+            login_title: "VisionGuard", login_sub: "Secure Access", login_email_placeholder: "Email address", send_otp_btn: "Send OTP", otp_placeholder: "Enter OTP", verify_btn: "Verify & Login", resend_btn: "Resend OTP", logout: "Logout", report_btn: "Report", tagline: "PROFESSIONAL SECURITY", badge: "Advanced Protection",
+            hero_desc: "An AI-powered IoT security system that combines Smart TV threat detection, universal IR remote control, and Arduino-based sensor automation for total peace of mind.",
+            download_app: "Download App", watch_demo: "Watch Demo", stat_users: "Active Users", stat_devices: "Devices Protected", stat_uptime: "Uptime", system_status: "System Status", online: "Active", realtime: "Real-time Protection Enabled",
+            problem_title: "The Challenge", problem_head: "Problem", problem_text: "Traditional home security systems are expensive, fragmented, and lack integration with Smart TVs.",
+            solution_head: "Our Solution", solution_text: "VisionGuard unifies Smart TV protection, universal IR control, and Arduino-based environmental sensing into a single, affordable system.",
+            objectives_head: "Key Objectives", obj1: "Real-time Smart TV threat detection", obj2: "Universal IR remote for all appliances", obj3: "Arduino sensor network for home security", obj4: "OTP-based secure authentication",
+            tech_title: "Technologies Used", tech_cat: "Category", tech_name: "Technology", tech_ver: "Version", tech_cat1: "Frontend", tech_cat2: "3D Graphics", tech_cat3: "Authentication", tech_cat4: "Hardware", tech_cat5: "IR Communication", tech_cat6: "Sensors",
+            arch_title: "System Architecture", ir_title: "Universal IR Remote System", ir_cap_title: "Capture Codes", ir_cap_desc: "Learn any IR remote", ir_send_title: "Send Signals", ir_send_desc: "Control devices instantly", ir_circuit_title: "Circuit Diagram", ir_circuit_desc: "Hardware setup",
+            ir_cap_head: "📥 IR Code Capture - Arduino Code", ir_cap_sample: "Sample Codes: Power: 0xFFA25D, Vol+: 0xFF629D", ir_send_head: "📤 IR Signal Send - Arduino Code", ir_circuit_head: "🔌 IR Circuit Diagram",
+            arduino_title: "Arduino Security & Automation", ard_sensor_title: "Sensor Integration", ard_sensor_desc: "DHT11, PIR, MQ-135", ard_control_title: "Device Control", ard_control_desc: "Relay module", ard_alert_title: "Alert System", ard_alert_desc: "Real-time notifications",
+            ard_sensor_head: "📊 Sensor Data Reading", ard_control_head: "⚡ Device Control via Relay", ard_alert_head: "🚨 Smart Alert Logic",
+            gallery_title: "System Preview", gallery_cap1: "🔐 Secure OTP Login", gallery_cap2: "🎮 Universal IR Remote", gallery_cap3: "📊 Real-time Sensor Data", gallery_cap4: "🔧 ESP32 + IR + Sensors",
+            results_title: "Achievements & Roadmap", achieve_title: "What We Achieved", ach1: "✅ AI-based Smart TV threat detection", ach2: "✅ Universal IR remote (15+ brands)", ach3: "✅ Real-time sensor monitoring + mobile alerts", ach4: "✅ OTP secure authentication", ach5: "✅ Cost-effective (< LKR 15,000 hardware)",
+            future_title: "Future Enhancements", fut1: "🚀 AI face recognition", fut2: "🚀 Voice control (Google/Alexa)", fut3: "🚀 Cloud historical data", fut4: "🚀 Energy monitoring module",
+            cta_title: "Ready to Secure Your Home?", cta_desc: "Join thousands of users trusting VisionGuard for complete home protection.", cta_btn: "Get Started Now",
+            footer_rights: "© 2026 VisionGuard — All rights reserved."
+        },
+        si: {
+            login_title: "විශන්ගාඩ්", login_sub: "ආරක්ෂිත ප්‍රවේශය", login_email_placeholder: "විද්‍යුත් තැපෑල", send_otp_btn: "OTP එවන්න", otp_placeholder: "OTP ඇතුළත් කරන්න", verify_btn: "තහවුරු කරන්න", resend_btn: "නැවත OTP එවන්න", logout: "ඉවත් වන්න", report_btn: "වාර්තාව", tagline: "වෘත්තීය ආරක්ෂාව", badge: "උසස් ආරක්ෂාව",
+            hero_desc: "ස්මාර්ට් ටීවී තර්ජන හඳුනාගැනීම, විශ්වීය IR දුරස්ථ පාලකය සහ Arduino පාදක සංවේදක ස්වයංක්‍රීයකරණය ඒකාබද්ධ කරන AI බලයෙන් ක්‍රියාත්මක IoT ආරක්ෂණ පද්ධතියකි.",
+            download_app: "යෙදුම බාගන්න", watch_demo: "සාදර්ශනය නරඹන්න", stat_users: "සක්‍රීය පරිශීලකයින්", stat_devices: "ආරක්ෂිත උපාංග", stat_uptime: "ක්‍රියාකාරී කාලය", system_status: "පද්ධති තත්ත්වය", online: "සක්‍රීයයි", realtime: "තත්‍ය කාලීන ආරක්ෂාව",
+            problem_title: "අභියෝගය", problem_head: "ගැටළුව", problem_text: "සාම්ප්‍රදායික ගෘහ ආරක්ෂණ පද්ධති මිල අධික, ඛණ්ඩනය වූ අතර ස්මාර්ට් ටීවී සමඟ ඒකාබද්ධ වීමක් නොමැත.",
+            solution_head: "අපගේ විසඳුම", solution_text: "විශන්ගාඩ් ස්මාර්ට් ටීවී ආරක්ෂාව, විශ්වීය IR පාලනය සහ Arduino පාදක පාරිසරික සංවේදනය ඒකාබද්ධ කරයි.",
+            objectives_head: "ප්‍රධාන අරමුණු", obj1: "තත්‍ය කාලීන ස්මාර්ට් ටීවී තර්ජන හඳුනාගැනීම", obj2: "සියලු උපකරණ සඳහා විශ්වීය IR දුරස්ථ පාලකය", obj3: "ගෘහ ආරක්ෂාව සඳහා Arduino සංවේදක ජාලය", obj4: "OTP පාදක ආරක්ෂිත සත්‍යාපනය",
+            tech_title: "භාවිත කළ තාක්ෂණයන්", tech_cat: "ප්‍රවර්ගය", tech_name: "තාක්ෂණය", tech_ver: "අනුවාදය", tech_cat1: "ඉදිරිපස", tech_cat2: "3D ග්‍රැෆික්ස්", tech_cat3: "සත්‍යාපනය", tech_cat4: "දෘඪාංග", tech_cat5: "IR සන්නිවේදනය", tech_cat6: "සංවේදක",
+            arch_title: "පද්ධති ගෘහ නිර්මාණය", ir_title: "විශ්වීය IR දුරස්ථ පද්ධතිය", ir_cap_title: "කේත ග්‍රහණය", ir_cap_desc: "ඕනෑම IR දුරස්ථ පාලකයක් ඉගෙන ගන්න", ir_send_title: "සංඥා යවන්න", ir_send_desc: "උපාංග ක්ෂණිකව පාලනය කරන්න", ir_circuit_title: "පරිපථ සටහන", ir_circuit_desc: "දෘඪාංග සැකසුම",
+            ir_cap_head: "📥 IR කේත ග්‍රහණය - Arduino කේතය", ir_cap_sample: "නියැදි කේත: බලය: 0xFFA25D, හඬ+: 0xFF629D", ir_send_head: "📤 IR සංඥා යැවීම - Arduino කේතය", ir_circuit_head: "🔌 IR පරිපථ සටහන",
+            arduino_title: "Arduino ආරක්ෂාව සහ ස්වයංක්‍රීයකරණය", ard_sensor_title: "සංවේදක ඒකාබද්ධ කිරීම", ard_sensor_desc: "DHT11, PIR, MQ-135", ard_control_title: "උපාංග පාලනය", ard_control_desc: "රිලේ මොඩියුලය", ard_alert_title: "අනතුරු ඇඟවීමේ පද්ධතිය", ard_alert_desc: "තත්‍ය කාලීන දැනුම්දීම්",
+            ard_sensor_head: "📊 සංවේදක දත්ත කියවීම", ard_control_head: "⚡ රිලේ මගින් උපාංග පාලනය", ard_alert_head: "🚨 ස්මාර්ට් අනතුරු ඇඟවීමේ තර්කනය",
+            gallery_title: "පද්ධති පෙරදසුන", gallery_cap1: "🔐 ආරක්ෂිත OTP පිවිසුම", gallery_cap2: "🎮 විශ්වීය IR දුරස්ථ", gallery_cap3: "📊 තත්‍ය කාලීන සංවේදක දත්ත", gallery_cap4: "🔧 ESP32 + IR + සංවේදක",
+            results_title: "සාධනයන් සහ අනාගත සැලැස්ම", achieve_title: "අප ලබා ගත් දේ", ach1: "✅ AI පාදක ස්මාර්ට් ටීවී තර්ජන හඳුනාගැනීම", ach2: "✅ විශ්වීය IR දුරස්ථ (15+ වෙළඳ නාම)", ach3: "✅ තත්‍ය කාලීන සංවේදක නිරීක්ෂණ + ජංගම ඇඟවීම්", ach4: "✅ OTP ආරක්ෂිත සත්‍යාපනය", ach5: "✅ ලාභදායී (දෘඪාංග < රු. 15,000)",
+            future_title: "අනාගත වැඩිදියුණු කිරීම්", fut1: "🚀 AI මුහුණු හඳුනාගැනීම", fut2: "🚀 හඬ පාලනය (Google/Alexa)", fut3: "🚀 වලාකුළු ඓතිහාසික දත්ත", fut4: "🚀 බලශක්ති නිරීක්ෂණ මොඩියුලය",
+            cta_title: "ඔබේ නිවස ආරක්ෂා කිරීමට සූදානම්ද?", cta_desc: "සම්පූර්ණ නිවාස ආරක්ෂාව සඳහා VisionGuard විශ්වාස කරන දහස් ගණනක් පරිශීලකයින් සමඟ එක්වන්න.", cta_btn: "දැන් ආරම්භ කරන්න",
+            footer_rights: "© 2026 විශන්ගාඩ් — සියලුම හිමිකම් ඇවිරිණි."
+        },
+        ta: {
+            login_title: "விஷன்கார்ட்", login_sub: "பாதுகாப்பான அணுகல்", login_email_placeholder: "மின்னஞ்சல் முகவரி", send_otp_btn: "OTP அனுப்பு", otp_placeholder: "OTP உள்ளிடுக", verify_btn: "சரிபார் & உள்நுழைக", resend_btn: "மீண்டும் OTP அனுப்பு", logout: "வெளியேறு", report_btn: "அறிக்கை", tagline: "தொழில்முறை பாதுகாப்பு", badge: "மேம்பட்ட பாதுகாப்பு",
+            hero_desc: "ஸ்மார்ட் டிவி அச்சுறுத்தல் கண்டறிதல், உலகளாவிய IR ரிமோட் கண்ட்ரோல் மற்றும் Arduino அடிப்படையிலான சென்சார் ஆட்டோமேஷன் ஆகியவற்றை ஒருங்கிணைக்கும் AI- இயங்கும் IoT பாதுகாப்பு அமைப்பு.",
+            download_app: "பயன்பாட்டைப் பதிவிறக்குக", watch_demo: "முன்னோட்டத்தைப் பார்", stat_users: "செயலில் உள்ள பயனர்கள்", stat_devices: "பாதுகாக்கப்பட்ட சாதனங்கள்", stat_uptime: "இயக்க நேரம்", system_status: "அமைப்பின் நிலை", online: "செயலில்", realtime: "நிகழ்நேர பாதுகாப்பு",
+            problem_title: "சவால்", problem_head: "பிரச்சினை", problem_text: "பாரம்பரிய வீட்டுப் பாதுகாப்பு அமைப்புகள் விலை உயர்ந்தவை, துண்டாடப்பட்டவை மற்றும் ஸ்மார்ட் டிவிகளுடன் ஒருங்கிணைப்பு இல்லை.",
+            solution_head: "எங்கள் தீர்வு", solution_text: "விஷன்கார்ட் ஸ்மார்ட் டிவி பாதுகாப்பு, உலகளாவிய IR கட்டுப்பாடு மற்றும் Arduino அடிப்படையிலான சுற்றுச்சூழல் உணர்வை ஒருங்கிணைக்கிறது.",
+            objectives_head: "முக்கிய நோக்கங்கள்", obj1: "நிகழ்நேர ஸ்மார்ட் டிவி அச்சுறுத்தல் கண்டறிதல்", obj2: "அனைத்து சாதனங்களுக்கும் உலகளாவிய IR ரிமோட்", obj3: "வீட்டுப் பாதுகாப்பிற்கான Arduino சென்சார் நெட்வொர்க்", obj4: "OTP அடிப்படையிலான பாதுகாப்பான அங்கீகாரம்",
+            tech_title: "பயன்படுத்தப்பட்ட தொழில்நுட்பங்கள்", tech_cat: "வகை", tech_name: "தொழில்நுட்பம்", tech_ver: "பதிப்பு", tech_cat1: "முகப்பு", tech_cat2: "3D கிராபிக்ஸ்", tech_cat3: "அங்கீகாரம்", tech_cat4: "வன்பொருள்", tech_cat5: "IR தகவல்தொடர்பு", tech_cat6: "உணரிகள்",
+            arch_title: "கட்டமைப்பு வரைபடம்", ir_title: "உலகளாவிய IR ரிமோட் அமைப்பு", ir_cap_title: "குறியீடுகளைப் பிடிக்க", ir_cap_desc: "எந்த IR ரிமோட்டையும் கற்க", ir_send_title: "சமிக்ஞைகளை அனுப்ப", ir_send_desc: "சாதனங்களை உடனடியாகக் கட்டுப்படுத்த", ir_circuit_title: "சுற்று வரைபடம்", ir_circuit_desc: "வன்பொருள் அமைப்பு",
+            ir_cap_head: "📥 IR குறியீடு பிடிப்பு - Arduino குறியீடு", ir_cap_sample: "மாதிரி குறியீடுகள்: பவர்: 0xFFA25D, ஒலி+: 0xFF629D", ir_send_head: "📤 IR சமிக்ஞைகளை அனுப்பு - Arduino குறியீடு", ir_circuit_head: "🔌 IR சுற்று வரைபடம்",
+            arduino_title: "Arduino பாதுகாப்பு & ஆட்டோமேஷன்", ard_sensor_title: "சென்சார் ஒருங்கிணைப்பு", ard_sensor_desc: "DHT11, PIR, MQ-135", ard_control_title: "சாதனக் கட்டுப்பாடு", ard_control_desc: "ரிலே தொகுதி", ard_alert_title: "எச்சரிக்கை அமைப்பு", ard_alert_desc: "நிகழ்நேர அறிவிப்புகள்",
+            ard_sensor_head: "📊 சென்சார் தரவைப் படித்தல்", ard_control_head: "⚡ ரிலே வழியாக சாதனக் கட்டுப்பாடு", ard_alert_head: "🚨 ஸ்மார்ட் எச்சரிக்கை தர்க்கம்",
+            gallery_title: "அமைப்பு முன்னோட்டம்", gallery_cap1: "🔐 பாதுகாப்பான OTP உள்நுழைவு", gallery_cap2: "🎮 உலகளாவிய IR ரிமோட்", gallery_cap3: "📊 நிகழ்நேர சென்சார் தரவு", gallery_cap4: "🔧 ESP32 + IR + உணரிகள்",
+            results_title: "சாதனைகள் & எதிர்கால பாதை", achieve_title: "நாங்கள் அடைந்தவை", ach1: "✅ AI அடிப்படையிலான ஸ்மார்ட் டிவி அச்சுறுத்தல் கண்டறிதல்", ach2: "✅ உலகளாவிய IR ரிமோட் (15+ பிராண்டுகள்)", ach3: "✅ நிகழ்நேர சென்சார் கண்காணிப்பு + மொபைல் எச்சரிக்கைகள்", ach4: "✅ OTP பாதுகாப்பான அங்கீகாரம்", ach5: "✅ செலவு குறைந்த (வன்பொருள் < ரூ. 15,000)",
+            future_title: "எதிர்கால மேம்பாடுகள்", fut1: "🚀 AI முக அங்கீகாரம்", fut2: "🚀 குரல் கட்டுப்பாடு (Google/Alexa)", fut3: "🚀 கிளவுட் வரலாற்று தரவு", fut4: "🚀 ஆற்றல் கண்காணிப்பு தொகுதி",
+            cta_title: "உங்கள் வீட்டைப் பாதுகாக்க தயாரா?", cta_desc: "முழுமையான வீட்டுப் பாதுகாப்பிற்காக VisionGuard ஐ நம்பும் ஆயிரக்கணக்கான பயனர்களுடன் இணையுங்கள்.", cta_btn: "இப்போது தொடங்குங்கள்",
+            footer_rights: "© 2026 விஷன்கார்ட் — அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+        }
+    };
+    
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang] && translations[lang][key] !== undefined) {
+                if(el.tagName === 'INPUT') el.placeholder = translations[lang][key];
+                else el.innerText = translations[lang][key];
+            }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if(translations[lang] && translations[lang][key]) el.placeholder = translations[lang][key];
+        });
+    }
+    
+    document.getElementById('languageSwitcher').addEventListener('change', (e) => setLanguage(e.target.value));
+    setLanguage('en');
+    
+    function toggleAccordion(id) {
+        const el = document.getElementById(id);
+        if(el.classList.contains('active')) el.classList.remove('active');
+        else { document.querySelectorAll('.accordion-content').forEach(e => e.classList.remove('active')); el.classList.add('active'); }
+    }
+    
+    function copyCode(id) {
+        navigator.clipboard.writeText(document.getElementById(id).innerText);
+        showToast('📋 Code copied to clipboard!', 'success');
+    }
+    
+    const backBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => backBtn.classList.toggle('show', window.scrollY > 300));
+    backBtn.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById('themeToggle').onclick = () => document.body.classList.toggle('light-mode');
+    
+    window.toggleAccordion = toggleAccordion;
+    window.copyCode = copyCode;
+    
+    // Copy button toast integration
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function() { showToast('Code copied!', 'success'); });
+    });
+</script>
+</body>
+</html>        @keyframes logoGlow {
             0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
             50% { box-shadow: 0 0 0 8px rgba(37,99,235,0); }
         }
